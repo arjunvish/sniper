@@ -141,16 +141,16 @@ let function := ltac2:(p2' |- match (Ltac2.Ltac1.to_constr (p2'))
 with | None => fail | Some pr => get_projs_in_variables pr end) in function p2'.
 
 Ltac snipe_param_no_check p1 p2 t :=
-scope_param p1 p2 t ; verit_no_check.
+scope_param p1 p2 t.
 
 Ltac snipe_no_param_no_check p1 p2 :=
-scope_no_param p1 p2 ; verit_no_check.
+scope_no_param p1 p2.
 
 Ltac snipe_param p1 p2 t :=
-scope_param p1 p2 t ; verit.
+scope_param p1 p2 t.
 
 Ltac snipe_no_param p1 p2 :=
-scope_no_param p1 p2 ; verit.
+scope_no_param p1 p2.
 
 Tactic Notation "elimination_polymorphism" uconstr_list_sep(l, ",") :=
   elpi elimination_polymorphism ltac_term_list:(l) ; clear_prenex_poly_hyps_in_context.
@@ -178,7 +178,7 @@ try interp_alg_types_context_goal p2' ; try (def_fix_and_pattern_matching prod_o
 elpi elimination_polymorphism ltac_term_list:(l) ; clear_prenex_poly_hyps_in_context) ;
 let function :=
 ltac2:(p2' |- match (Ltac2.Ltac1.to_constr (p2'))
-with | None => fail | Some pr => get_projs_in_variables pr end) in function p2' ; verit.
+with | None => fail | Some pr => get_projs_in_variables pr end) in function p2'.
 
 
 Tactic Notation "snipe_no_check" constr(t) := snipe_param_no_check prod_of_symb prod_types t.
@@ -191,11 +191,11 @@ Tactic Notation "snipe" constr(t) := snipe_param prod_of_symb prod_types t.
 Tactic Notation "snipe" := snipe_no_param prod_of_symb prod_types.
 
 
-Tactic Notation "snipe_no_check_timeout" constr(t) int_or_var(n) := scope_param prod_of_symb prod_types t ; verit_no_check_timeout n.
-Tactic Notation "snipe_no_check_timeout" int_or_var(n) := scope_no_param prod_of_symb prod_types ; verit_no_check_timeout n.
+Tactic Notation "snipe_no_check_timeout" constr(t) int_or_var(n) := scope_param prod_of_symb prod_types t.
+Tactic Notation "snipe_no_check_timeout" int_or_var(n) := scope_no_param prod_of_symb prod_types.
 
-Tactic Notation "snipe_timeout" constr(t) int_or_var(n) := scope_param prod_of_symb prod_types t ; verit_timeout n.
-Tactic Notation "snipe_timeout" int_or_var(n) := scope_no_param prod_of_symb prod_types ; verit_timeout n.
+Tactic Notation "snipe_timeout" constr(t) int_or_var(n) := scope_param prod_of_symb prod_types t.
+Tactic Notation "snipe_timeout" int_or_var(n) := scope_no_param prod_of_symb prod_types.
 
 (** Preprocessing for first-order intuitionistic logic with no interpreted symbols **)
 
